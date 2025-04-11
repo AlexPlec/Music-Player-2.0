@@ -1,0 +1,114 @@
+[
+  {
+    "Name": "Rotten Toten",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\artist.jpg",
+    "Albums": [
+      {
+        "Name": "Маска красной смерти",
+        "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\cover.jpg",
+        "Genre": "Punk Rock",
+        "Year": 2022,
+        "Songs": [
+          {
+            "Title": "Маска красной смерти",
+            "Track": 1,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\01 - Маска красной смерти.mp3"
+          },
+          {
+            "Title": " Элегия",
+            "Track": 2,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\02 - Элегия.mp3"
+          },
+          {
+            "Title": "Щи",
+            "Track": 3,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\03 - Щи.mp3"
+          },
+          {
+            "Title": "Старик",
+            "Track": 4,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\04 - Старик.mp3"
+          },
+          {
+            "Title": "Трактирщик",
+            "Track": 5,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\05 - Трактирщик.mp3"
+          },
+          {
+            "Title": "Собака Баскервилей",
+            "Track": 6,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\06 - Собака Баскервилей.mp3"
+          },
+          {
+            "Title": "Ведьмы",
+            "Track": 7,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\07 - Ведьмы.mp3"
+          },
+          {
+            "Title": "Пляшут тени на стене",
+            "Track": 8,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Маска красной смерти\\08 - Пляшут тени на стене.mp3"
+          }
+        ]
+      },
+      {
+        "Name": "Ужин у Вдовы",
+        "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\cover.jpg",
+        "Genre": "Punk Rock",
+        "Year": 2019,
+        "Songs": [
+          {
+            "Title": "Торговец Волосами",
+            "Track": 1,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\01 - Торговец Волосами.mp3"
+          },
+          {
+            "Title": "Мертвый Висельник",
+            "Track": 2,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\02 - Мертвый Висельник.mp3"
+          },
+          {
+            "Title": "Кузнец и Черт",
+            "Track": 3,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\03 - Кузнец и Черт.mp3"
+          },
+          {
+            "Title": "Бесы",
+            "Track": 4,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\04 - Бесы.mp3"
+          },
+          {
+            "Title": "Ужин у Вдовы",
+            "Track": 5,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\05 - Ужин у Вдовы.mp3"
+          },
+          {
+            "Title": "Подгорные Пьяницы",
+            "Track": 6,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\06 - Подгорные Пьяницы.mp3"
+          },
+          {
+            "Title": "Карты, Деньги, Два Хвоста",
+            "Track": 7,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\07 - Карты, Деньги, Два Хвоста.mp3"
+          },
+          {
+            "Title": "Часовщик",
+            "Track": 8,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\08 - Часовщик.mp3"
+          },
+          {
+            "Title": "Праздник Пива",
+            "Track": 9,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\09 - Праздник Пива.mp3"
+          },
+          {
+            "Title": "Флибустьеры",
+            "Track": 10,
+            "FilePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\Ужин у Вдовы\\10 - Флибустьеры.mp3"
+          }
+        ]
+      }
+    ]
+  }
+]

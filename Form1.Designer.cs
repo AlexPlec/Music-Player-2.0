@@ -39,8 +39,16 @@
             lblArtist = new Label();
             lstArtists = new ListBox();
             lstAlbums = new ListBox();
+            trkVolume = new TrackBar();
+            chkLoopTrack = new CheckBox();
+            chkLoopAlbum = new CheckBox();
+            lblCurrentTime = new Label();
+            lblTotalTime = new Label();
+            trackBarTime = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)picAlbumCover).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picArtist).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trkVolume).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarTime).BeginInit();
             SuspendLayout();
             // 
             // btnPlay
@@ -142,11 +150,74 @@
             lstAlbums.Size = new Size(120, 94);
             lstAlbums.TabIndex = 11;
             // 
+            // trkVolume
+            // 
+            trkVolume.Location = new Point(545, 318);
+            trkVolume.Maximum = 100;
+            trkVolume.Name = "trkVolume";
+            trkVolume.Size = new Size(104, 45);
+            trkVolume.TabIndex = 12;
+            trkVolume.TickStyle = TickStyle.None;
+            trkVolume.Value = 100;
+            // 
+            // chkLoopTrack
+            // 
+            chkLoopTrack.AutoSize = true;
+            chkLoopTrack.Location = new Point(487, 370);
+            chkLoopTrack.Name = "chkLoopTrack";
+            chkLoopTrack.Size = new Size(84, 19);
+            chkLoopTrack.TabIndex = 13;
+            chkLoopTrack.Text = "Loop Track";
+            chkLoopTrack.UseVisualStyleBackColor = true;
+            // 
+            // chkLoopAlbum
+            // 
+            chkLoopAlbum.AutoSize = true;
+            chkLoopAlbum.Location = new Point(591, 369);
+            chkLoopAlbum.Name = "chkLoopAlbum";
+            chkLoopAlbum.Size = new Size(92, 19);
+            chkLoopAlbum.TabIndex = 14;
+            chkLoopAlbum.Text = "Loop Album";
+            chkLoopAlbum.UseVisualStyleBackColor = true;
+            // 
+            // lblCurrentTime
+            // 
+            lblCurrentTime.AutoSize = true;
+            lblCurrentTime.Location = new Point(26, 381);
+            lblCurrentTime.Name = "lblCurrentTime";
+            lblCurrentTime.Size = new Size(34, 15);
+            lblCurrentTime.TabIndex = 15;
+            lblCurrentTime.Text = "00:00";
+            // 
+            // lblTotalTime
+            // 
+            lblTotalTime.AutoSize = true;
+            lblTotalTime.Location = new Point(187, 381);
+            lblTotalTime.Name = "lblTotalTime";
+            lblTotalTime.Size = new Size(34, 15);
+            lblTotalTime.TabIndex = 16;
+            lblTotalTime.Text = "00:00";
+            // 
+            // trackBarTime
+            // 
+            trackBarTime.Location = new Point(67, 381);
+            trackBarTime.Maximum = 100;
+            trackBarTime.Name = "trackBarTime";
+            trackBarTime.Size = new Size(104, 45);
+            trackBarTime.TabIndex = 17;
+            trackBarTime.TickStyle = TickStyle.None;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(trackBarTime);
+            Controls.Add(lblTotalTime);
+            Controls.Add(lblCurrentTime);
+            Controls.Add(chkLoopAlbum);
+            Controls.Add(chkLoopTrack);
+            Controls.Add(trkVolume);
             Controls.Add(lstAlbums);
             Controls.Add(lstArtists);
             Controls.Add(lblArtist);
@@ -163,6 +234,8 @@
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)picAlbumCover).EndInit();
             ((System.ComponentModel.ISupportInitialize)picArtist).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trkVolume).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarTime).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -180,5 +253,11 @@
         private Label lblArtist;
         private ListBox lstArtists;
         private ListBox lstAlbums;
+        private TrackBar trkVolume;
+        private CheckBox chkLoopTrack;
+        private CheckBox chkLoopAlbum;
+        private Label lblCurrentTime;
+        private Label lblTotalTime;
+        private TrackBar trackBarTime;
     }
 }
