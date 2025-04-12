@@ -9,6 +9,7 @@ namespace MusicPlayer
         private List<Artist> artists;
         private Player player = new Player();
         private TrackProgressManager progressManager;
+        private VolumeManager volumeManager;
 
         public Form1()
         {
@@ -33,6 +34,8 @@ namespace MusicPlayer
             musicLibraryLoader.LoadLibrary(artists);
 
             lstSongs.SelectedIndexChanged += lstSongs_SelectedIndexChanged;
+
+            volumeManager = new VolumeManager(player, trkVolume, lblVolumeLevel);
 
             progressManager = new TrackProgressManager(player, timerProgress, trackBarProgress, lblCurrentTime, lblTotalTime);
             progressManager.Start();

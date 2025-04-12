@@ -47,6 +47,7 @@
             lblTotalTime = new Label();
             trackBarProgress = new TrackBar();
             timerProgress = new System.Windows.Forms.Timer(components);
+            lblVolumeLevel = new Label();
             ((System.ComponentModel.ISupportInitialize)picAlbumCover).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picArtist).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trkVolume).BeginInit();
@@ -213,11 +214,21 @@
             // 
             timerProgress.Interval = 500;
             // 
+            // lblVolumeLevel
+            // 
+            lblVolumeLevel.AutoSize = true;
+            lblVolumeLevel.Location = new Point(655, 318);
+            lblVolumeLevel.Name = "lblVolumeLevel";
+            lblVolumeLevel.Size = new Size(25, 15);
+            lblVolumeLevel.TabIndex = 18;
+            lblVolumeLevel.Text = "100";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblVolumeLevel);
             Controls.Add(trackBarProgress);
             Controls.Add(lblTotalTime);
             Controls.Add(lblCurrentTime);
@@ -266,5 +277,6 @@
         private Label lblTotalTime;
         private TrackBar trackBarProgress;
         private System.Windows.Forms.Timer timerProgress;
+        private Label lblVolumeLevel;
     }
 }
