@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             btnPlay = new Button();
             lblStatus = new Label();
             lstSongs = new ListBox();
@@ -44,11 +45,12 @@
             chkLoopAlbum = new CheckBox();
             lblCurrentTime = new Label();
             lblTotalTime = new Label();
-            trackBarTime = new TrackBar();
+            trackBarProgress = new TrackBar();
+            timerProgress = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)picAlbumCover).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picArtist).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trkVolume).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trackBarTime).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarProgress).BeginInit();
             SuspendLayout();
             // 
             // btnPlay
@@ -198,21 +200,25 @@
             lblTotalTime.TabIndex = 16;
             lblTotalTime.Text = "00:00";
             // 
-            // trackBarTime
+            // trackBarProgress
             // 
-            trackBarTime.Location = new Point(67, 381);
-            trackBarTime.Maximum = 100;
-            trackBarTime.Name = "trackBarTime";
-            trackBarTime.Size = new Size(104, 45);
-            trackBarTime.TabIndex = 17;
-            trackBarTime.TickStyle = TickStyle.None;
+            trackBarProgress.Location = new Point(67, 381);
+            trackBarProgress.Maximum = 100;
+            trackBarProgress.Name = "trackBarProgress";
+            trackBarProgress.Size = new Size(104, 45);
+            trackBarProgress.TabIndex = 17;
+            trackBarProgress.TickStyle = TickStyle.None;
+            // 
+            // timerProgress
+            // 
+            timerProgress.Interval = 500;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(trackBarTime);
+            Controls.Add(trackBarProgress);
             Controls.Add(lblTotalTime);
             Controls.Add(lblCurrentTime);
             Controls.Add(chkLoopAlbum);
@@ -235,7 +241,7 @@
             ((System.ComponentModel.ISupportInitialize)picAlbumCover).EndInit();
             ((System.ComponentModel.ISupportInitialize)picArtist).EndInit();
             ((System.ComponentModel.ISupportInitialize)trkVolume).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBarTime).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBarProgress).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -258,6 +264,7 @@
         private CheckBox chkLoopAlbum;
         private Label lblCurrentTime;
         private Label lblTotalTime;
-        private TrackBar trackBarTime;
+        private TrackBar trackBarProgress;
+        private System.Windows.Forms.Timer timerProgress;
     }
 }

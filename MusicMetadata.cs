@@ -28,6 +28,21 @@ namespace MusicPlayer
             public string FilePath { get; set; }
         }
 
+        public class SongListItem
+        {
+            public Song Song { get; }
+
+            public SongListItem(Song song)
+            {
+                Song = song;
+            }
+
+            public override string ToString()
+            {
+                return $"{Song.Track}. {Song.Title}";
+            }
+        }
+
         public const string MusicFolderPath = "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\";
         private const string CacheFilePath = "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\structuredSongsCache.json";
 

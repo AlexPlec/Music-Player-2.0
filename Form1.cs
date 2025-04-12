@@ -1,8 +1,14 @@
-﻿namespace MusicPlayer
+﻿using static MusicPlayer.MusicMetadata;
+
+namespace MusicPlayer
 {
     public partial class Form1 : Form
     {
         private MusicMetadata musicMetadata;
+        private MusicLibraryLoader musicLibraryLoader;
+        private List<Artist> artists;
+        private Player player = new Player();
+        private TrackProgressManager progressManager;
 
         public Form1()
         {
@@ -12,35 +18,52 @@
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Try loading cache first
+
             musicMetadata.LoadCache();
 
-            // If cache is empty, load metadata and save it
             if (musicMetadata.GetAllArtists().Count == 0)
             {
                 musicMetadata.LoadMetada();
-                musicMetadata.SaveCache(); // Save metadata to cache
+                musicMetadata.SaveCache();
             }
 
-            var artists = musicMetadata.GetAllArtists();
+            artists = musicMetadata.GetAllArtists();
 
-            // Display artist names, albums, and songs for testing
-            foreach (var artist in artists)
+            musicLibraryLoader = new MusicLibraryLoader(lstArtists, lstAlbums, lstSongs);
+            musicLibraryLoader.LoadLibrary(artists);
+
+            lstSongs.SelectedIndexChanged += lstSongs_SelectedIndexChanged;
+
+            progressManager = new TrackProgressManager(player, timerProgress, trackBarProgress, lblCurrentTime, lblTotalTime);
+            progressManager.Start();
+        }
+
+        private void lstSongs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //    System.Diagnostics.Debug.WriteLine(lstSongs.SelectedItem);
+
+            if (lstSongs.SelectedItem is SongListItem selectedItem)
             {
-                System.Diagnostics.Debug.WriteLine($"Artist: {artist.Name}");
-
-                foreach (var album in artist.Albums)
-                {
-                    System.Diagnostics.Debug.WriteLine($"  Album: {album.Name}, Genre: {album.Genre}, Year: {album.Year}");
-
-                    foreach (var song in album.Songs)
-                    {
-                        System.Diagnostics.Debug.WriteLine($"    Song: {song.Title}, Track: {song.Track}, File: {song.FilePath}");
-                    }
-                }
+                var song = selectedItem.Song;
+                player.Play(song.FilePath);
+                System.Diagnostics.Debug.WriteLine($"Playing: {song.Title}, File: {song.FilePath}");
             }
         }
 
-    }
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            player.Resume();
+        }
 
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            player.Pause();
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            player.Stop();
+        }
+    }
 }
