@@ -41,7 +41,8 @@ namespace MusicPlayer
 
             foreach (var album in selectedArtist.Albums)
             {
-                _albumListBox.Items.Add(album.Name);
+                // _albumListBox.Items.Add(album.Name);
+                _albumListBox.Items.Add(new AlbumListItem(album));
             }
 
             _albumListBox.SelectedIndexChanged += (s, args) =>

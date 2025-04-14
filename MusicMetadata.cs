@@ -43,6 +43,21 @@ namespace MusicPlayer
             }
         }
 
+        public class AlbumListItem
+        {
+            public Album Album { get; }
+
+            public AlbumListItem(Album album)
+            {
+                Album = album;
+            }
+
+            public override string ToString()
+            {
+                return $"{Album.Name}";
+            }
+        }
+
         public const string MusicFolderPath = "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\";
         private const string CacheFilePath = "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\structuredSongsCache.json";
 

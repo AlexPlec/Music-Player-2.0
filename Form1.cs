@@ -19,7 +19,18 @@ namespace MusicPlayer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            InitializeMetadata();
+            LoadAndDisplayLibrary();
+            HookEvents();
+            InitializeProgressManager();
+            ConfigureLoopControls();
+            volumeManager = new VolumeManager(player, trkVolume, lblVolumeLevel);
+        }
 
+        //    System.Diagnostics.Debug.WriteLine(lstSongs.SelectedItem);
+
+        private void InitializeMetadata()
+        {
             musicMetadata.LoadCache();
 
             if (musicMetadata.GetAllArtists().Count == 0)
@@ -29,44 +40,86 @@ namespace MusicPlayer
             }
 
             artists = musicMetadata.GetAllArtists();
+        }
 
+        private void LoadAndDisplayLibrary()
+        {
             musicLibraryLoader = new MusicLibraryLoader(lstArtists, lstAlbums, lstSongs);
             musicLibraryLoader.LoadLibrary(artists);
+        }
 
-            lstSongs.SelectedIndexChanged += lstSongs_SelectedIndexChanged;
+        private void HookEvents()
+        {
+            lstSongs.SelectedIndexChanged += OnSongSelected;
+        }
 
-            volumeManager = new VolumeManager(player, trkVolume, lblVolumeLevel);
-
+        private void InitializeProgressManager()
+        {
             progressManager = new TrackProgressManager(player, timerProgress, trackBarProgress, lblCurrentTime, lblTotalTime);
             progressManager.Start();
         }
 
-        private void lstSongs_SelectedIndexChanged(object sender, EventArgs e)
+        private void ConfigureLoopControls()
         {
-
-            //    System.Diagnostics.Debug.WriteLine(lstSongs.SelectedItem);
-
-            if (lstSongs.SelectedItem is SongListItem selectedItem)
+            chkLoopTrack.CheckedChanged += (s, e) =>
             {
-                var song = selectedItem.Song;
-                player.Play(song.FilePath);
-                System.Diagnostics.Debug.WriteLine($"Playing: {song.Title}, File: {song.FilePath}");
+                player.LoopTrack = chkLoopTrack.Checked;
+                if (chkLoopTrack.Checked)
+                    chkLoopAlbum.Checked = false;
+            };
+
+            chkLoopAlbum.CheckedChanged += (s, e) =>
+            {
+                player.LoopAlbum = chkLoopAlbum.Checked;
+                if (chkLoopAlbum.Checked)
+                    chkLoopTrack.Checked = false;
+            };
+        }
+
+        private void OnSongSelected(object sender, EventArgs e)
+        {
+            if (lstAlbums.SelectedItem is AlbumListItem albumItem &&
+                lstSongs.SelectedItem is SongListItem selectedItem)
+            {
+                PlaySelectedSong(albumItem, selectedItem);
             }
         }
 
-        private void btnPlay_Click(object sender, EventArgs e)
+        private void PlaySelectedSong(AlbumListItem albumItem, SongListItem selectedItem)
         {
-            player.Resume();
+            var albumSongs = albumItem.Album.Songs;
+            int songIndex = albumSongs.IndexOf(selectedItem.Song);
+
+            player.SetPlaylist(albumSongs, songIndex);
+            player.PlayCurrent();
+
+            System.Diagnostics.Debug.WriteLine($"Playing: {selectedItem.Song.Title}");
+        }
+        //for future change from up/down to left/right because of LstSongs
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Right)
+            {
+                player.NextTrack();
+                return true;
+            }
+            else if (keyData == Keys.Left)
+            {
+                player.PreviousTrack();
+                return true;
+            }
+            else if (keyData == Keys.Space)
+            {
+                if (player.IsPlaying)
+                    player.Pause();
+                else
+                    player.Resume();
+
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void btnPause_Click(object sender, EventArgs e)
-        {
-            player.Pause();
-        }
-
-        private void btnStop_Click(object sender, EventArgs e)
-        {
-            player.Stop();
-        }
     }
 }
