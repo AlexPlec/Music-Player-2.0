@@ -1,0 +1,41 @@
+﻿using MusicPlayer.metadata;
+using MusicPlayer.utils;
+
+namespace MusicPlayer.customModules.Views.albums.albumsView
+{
+    public partial class AlbumElement : UserControl
+    {
+        public AlbumElement()
+        {
+            InitializeComponent();
+            Click += OnClick;
+            foreach (Control control in Controls)
+                control.Click += OnClick;
+        }
+
+        private MusicMetadata.AlbumCacheItem album;
+        public event Action<MusicMetadata.AlbumCacheItem> AlbumClicked;
+
+        public void SetAlbum(MusicMetadata.AlbumCacheItem albumItem, MusicMetadata.ArtistCacheItem artistItem)
+        {
+            album = albumItem;
+
+            artistTitle.Text = artistItem.Name;
+            albumTitle.Text = album.Name;
+
+            if (albumCover.Image != null)
+            {
+                albumCover.Image.Dispose();
+                albumCover.Image = null;
+            }
+
+            using var img = Image.FromFile(album.CoverImagePath);
+            albumCover.Image = ImageHelper.ResizeImageKeepAspect(img, albumCover.Size);
+        }
+
+        private void OnClick(object? sender, EventArgs e)
+        {
+            AlbumClicked?.Invoke(album);
+        }
+    }
+}

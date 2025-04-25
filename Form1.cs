@@ -1,125 +1,96 @@
-﻿using static MusicPlayer.MusicMetadata;
+﻿using MusicPlayer.metadata;
 
 namespace MusicPlayer
 {
     public partial class Form1 : Form
     {
         private MusicMetadata musicMetadata;
-        private MusicLibraryLoader musicLibraryLoader;
-        private List<Artist> artists;
-        private Player player = new Player();
-        private TrackProgressManager progressManager;
-        private VolumeManager volumeManager;
-
+        private Stack<Control> navigationHistory = new Stack<Control>();
         public Form1()
         {
             InitializeComponent();
             musicMetadata = new MusicMetadata();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             InitializeMetadata();
-            LoadAndDisplayLibrary();
-            HookEvents();
-            InitializeProgressManager();
-            ConfigureLoopControls();
-            volumeManager = new VolumeManager(player, trkVolume, lblVolumeLevel);
+            btnBack.Click += BtnBack_Click;
+            artistsView.SetArtists(musicMetadata.GetArtists());
+            artistsView.ArtistSelected += OnArtistSelected;
+            artistAlbumsView.AlbumSelected += OnAlbumSelected;
+            albumsView.SetAlbums(musicMetadata.GetAlbums(), musicMetadata.GetArtists());
+            btnArtists.Click += (s, e) => ShowView(artistsView);
+            btnAlbums.Click += (s, e) => ShowView(albumsView);
+            albumsView.AlbumSelected += OnAlbumSelected;
+
         }
+        private void OnAlbumSelected(MusicMetadata.AlbumCacheItem album)
+        {
+            navigationHistory.Push(artistAlbumsView);
+            artistAlbumsView.Visible = false;
+            var artist = musicMetadata.GetArtists().FirstOrDefault(a => a.Id == album.ArtistId);
+            var songs = musicMetadata.GetSongs()
+             .Where(s => s.AlbumId == album.Id)
+             .OrderBy(s => s.Track)
+             .ToList();
+            artistAlbumSongsView.SetSongs(album, artist, songs);
+            artistAlbumSongsView.Visible = true;
+        }
+        private void OnArtistSelected(MusicMetadata.ArtistCacheItem artist)
+        {
+            navigationHistory.Push(artistsView);
+            artistsView.Visible = false;
 
+            var artistAlbums = musicMetadata.GetAlbums().Where(a => a.ArtistId == artist.Id).ToList();
+            artistAlbumsView.SetAlbums(artistAlbums, artist);
+            artistAlbumsView.Visible = true;
+        }
         //    System.Diagnostics.Debug.WriteLine(lstSongs.SelectedItem);
-
         private void InitializeMetadata()
         {
-            musicMetadata.LoadCache();
 
-            if (musicMetadata.GetAllArtists().Count == 0)
+            musicMetadata.LoadArtistCache();
+            musicMetadata.LoadAlbumsCache();
+            musicMetadata.LoadSongsCache();
+
+            if (musicMetadata.GetArtists().Count == 0 ||
+                musicMetadata.GetAlbums().Count == 0 ||
+                musicMetadata.GetSongs().Count == 0)
             {
-                musicMetadata.LoadMetada();
-                musicMetadata.SaveCache();
+                musicMetadata.CreateAllCaches();
             }
-
-            artists = musicMetadata.GetAllArtists();
         }
-
-        private void LoadAndDisplayLibrary()
+        private void BtnBack_Click(object? sender, EventArgs e)
         {
-            musicLibraryLoader = new MusicLibraryLoader(lstArtists, lstAlbums, lstSongs);
-            musicLibraryLoader.LoadLibrary(artists);
-        }
-
-        private void HookEvents()
-        {
-            lstSongs.SelectedIndexChanged += OnSongSelected;
-        }
-
-        private void InitializeProgressManager()
-        {
-            progressManager = new TrackProgressManager(player, timerProgress, trackBarProgress, lblCurrentTime, lblTotalTime);
-            progressManager.Start();
-        }
-
-        private void ConfigureLoopControls()
-        {
-            chkLoopTrack.CheckedChanged += (s, e) =>
+            if (navigationHistory.Count > 0)
             {
-                player.LoopTrack = chkLoopTrack.Checked;
-                if (chkLoopTrack.Checked)
-                    chkLoopAlbum.Checked = false;
-            };
+                Control lastView = navigationHistory.Pop();
 
-            chkLoopAlbum.CheckedChanged += (s, e) =>
-            {
-                player.LoopAlbum = chkLoopAlbum.Checked;
-                if (chkLoopAlbum.Checked)
-                    chkLoopTrack.Checked = false;
-            };
-        }
+                // Hide all views
+                artistsView.Visible = false;
+                artistAlbumsView.Visible = false;
+                artistAlbumSongsView.Visible = false;
 
-        private void OnSongSelected(object sender, EventArgs e)
-        {
-            if (lstAlbums.SelectedItem is AlbumListItem albumItem &&
-                lstSongs.SelectedItem is SongListItem selectedItem)
-            {
-                PlaySelectedSong(albumItem, selectedItem);
+                lastView.Visible = true;
             }
         }
 
-        private void PlaySelectedSong(AlbumListItem albumItem, SongListItem selectedItem)
+        private void ShowView(Control viewToShow)
         {
-            var albumSongs = albumItem.Album.Songs;
-            int songIndex = albumSongs.IndexOf(selectedItem.Song);
+            // Hide all views
+            artistsView.Visible = false;
+            artistAlbumsView.Visible = false;
+            artistAlbumSongsView.Visible = false;
+            albumsView.Visible = false;
 
-            player.SetPlaylist(albumSongs, songIndex);
-            player.PlayCurrent();
+            // Optionally keep track of navigation history
+            if (!navigationHistory.Contains(viewToShow))
+            {
+                navigationHistory.Push(viewToShow);
+            }
 
-            System.Diagnostics.Debug.WriteLine($"Playing: {selectedItem.Song.Title}");
+            // Show the selected view
+            viewToShow.Visible = true;
         }
-        //for future change from up/down to left/right because of LstSongs
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Right)
-            {
-                player.NextTrack();
-                return true;
-            }
-            else if (keyData == Keys.Left)
-            {
-                player.PreviousTrack();
-                return true;
-            }
-            else if (keyData == Keys.Space)
-            {
-                if (player.IsPlaying)
-                    player.Pause();
-                else
-                    player.Resume();
-
-                return true;
-            }
-
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
     }
 }

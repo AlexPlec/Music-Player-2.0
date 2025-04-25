@@ -28,255 +28,131 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            btnPlay = new Button();
-            lblStatus = new Label();
-            lstSongs = new ListBox();
-            btnPause = new Button();
-            btnStop = new Button();
-            picAlbumCover = new PictureBox();
-            picArtist = new PictureBox();
-            lblAlbum = new Label();
-            lblArtist = new Label();
-            lstArtists = new ListBox();
-            lstAlbums = new ListBox();
-            trkVolume = new TrackBar();
-            chkLoopTrack = new CheckBox();
-            chkLoopAlbum = new CheckBox();
-            lblCurrentTime = new Label();
-            lblTotalTime = new Label();
-            trackBarProgress = new TrackBar();
-            timerProgress = new System.Windows.Forms.Timer(components);
-            lblVolumeLevel = new Label();
-            ((System.ComponentModel.ISupportInitialize)picAlbumCover).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picArtist).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trkVolume).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trackBarProgress).BeginInit();
+            btnArtists = new Button();
+            btnAlbums = new Button();
+            btnPlaylists = new Button();
+            ViewPanel = new Panel();
+            albumsView = new customModules.Views.albums.albumsView.Albums();
+            artistAlbumSongsView = new customModules.Views.artists.artistAlbumSongsView.ArtistAlbumSongs();
+            artistAlbumsView = new customModules.Views.artists.artistAlbumsView.ArtistAlbums();
+            artistsView = new customModules.Views.artists.artistsView.Artists();
+            artistsViewForm = new customModules.Views.artists.artistsView.Artists();
+            btnBack = new Button();
+            ViewPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // btnPlay
+            // btnArtists
             // 
-            btnPlay.Location = new Point(67, 48);
-            btnPlay.Name = "btnPlay";
-            btnPlay.Size = new Size(75, 23);
-            btnPlay.TabIndex = 0;
-            btnPlay.Text = "Play";
-            btnPlay.UseVisualStyleBackColor = true;
+            btnArtists.Location = new Point(274, 12);
+            btnArtists.Name = "btnArtists";
+            btnArtists.Size = new Size(75, 23);
+            btnArtists.TabIndex = 20;
+            btnArtists.Text = "Artists";
+            btnArtists.UseVisualStyleBackColor = true;
             // 
-            // lblStatus
+            // btnAlbums
             // 
-            lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(67, 203);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(39, 15);
-            lblStatus.TabIndex = 1;
-            lblStatus.Text = "Status";
+            btnAlbums.Location = new Point(355, 12);
+            btnAlbums.Name = "btnAlbums";
+            btnAlbums.Size = new Size(75, 23);
+            btnAlbums.TabIndex = 21;
+            btnAlbums.Text = "Albums";
+            btnAlbums.UseVisualStyleBackColor = true;
             // 
-            // lstSongs
+            // btnPlaylists
             // 
-            lstSongs.FormattingEnabled = true;
-            lstSongs.ItemHeight = 15;
-            lstSongs.Location = new Point(289, 250);
-            lstSongs.Name = "lstSongs";
-            lstSongs.Size = new Size(120, 94);
-            lstSongs.TabIndex = 2;
+            btnPlaylists.Location = new Point(436, 12);
+            btnPlaylists.Name = "btnPlaylists";
+            btnPlaylists.Size = new Size(75, 23);
+            btnPlaylists.TabIndex = 22;
+            btnPlaylists.Text = "Playlists";
+            btnPlaylists.UseVisualStyleBackColor = true;
             // 
-            // btnPause
+            // ViewPanel
             // 
-            btnPause.Location = new Point(67, 82);
-            btnPause.Name = "btnPause";
-            btnPause.Size = new Size(75, 23);
-            btnPause.TabIndex = 3;
-            btnPause.Text = "Pause";
-            btnPause.UseVisualStyleBackColor = true;
+            ViewPanel.Controls.Add(albumsView);
+            ViewPanel.Controls.Add(artistAlbumSongsView);
+            ViewPanel.Controls.Add(artistAlbumsView);
+            ViewPanel.Controls.Add(artistsView);
+            ViewPanel.Controls.Add(artistsViewForm);
+            ViewPanel.Location = new Point(170, 100);
+            ViewPanel.Name = "ViewPanel";
+            ViewPanel.Size = new Size(491, 503);
+            ViewPanel.TabIndex = 0;
             // 
-            // btnStop
+            // albumsView
             // 
-            btnStop.Location = new Point(67, 129);
-            btnStop.Name = "btnStop";
-            btnStop.Size = new Size(75, 23);
-            btnStop.TabIndex = 4;
-            btnStop.Text = "Stop";
-            btnStop.UseVisualStyleBackColor = true;
+            albumsView.Location = new Point(315, 12);
+            albumsView.Name = "albumsView";
+            albumsView.Size = new Size(148, 120);
+            albumsView.TabIndex = 4;
+            albumsView.Visible = false;
             // 
-            // picAlbumCover
+            // artistAlbumSongsView
             // 
-            picAlbumCover.Location = new Point(550, 102);
-            picAlbumCover.Name = "picAlbumCover";
-            picAlbumCover.Size = new Size(100, 50);
-            picAlbumCover.SizeMode = PictureBoxSizeMode.StretchImage;
-            picAlbumCover.TabIndex = 6;
-            picAlbumCover.TabStop = false;
+            artistAlbumSongsView.Location = new Point(3, 159);
+            artistAlbumSongsView.Name = "artistAlbumSongsView";
+            artistAlbumSongsView.Size = new Size(210, 180);
+            artistAlbumSongsView.TabIndex = 3;
+            artistAlbumSongsView.Visible = false;
             // 
-            // picArtist
+            // artistAlbumsView
             // 
-            picArtist.Location = new Point(550, 203);
-            picArtist.Name = "picArtist";
-            picArtist.Size = new Size(100, 50);
-            picArtist.SizeMode = PictureBoxSizeMode.StretchImage;
-            picArtist.TabIndex = 7;
-            picArtist.TabStop = false;
+            artistAlbumsView.Location = new Point(159, 12);
+            artistAlbumsView.Name = "artistAlbumsView";
+            artistAlbumsView.Size = new Size(150, 150);
+            artistAlbumsView.TabIndex = 2;
             // 
-            // lblAlbum
+            // artistsView
             // 
-            lblAlbum.AutoSize = true;
-            lblAlbum.Location = new Point(568, 82);
-            lblAlbum.Name = "lblAlbum";
-            lblAlbum.Size = new Size(69, 15);
-            lblAlbum.TabIndex = 8;
-            lblAlbum.Text = "Album Title";
+            artistsView.Location = new Point(3, 3);
+            artistsView.Name = "artistsView";
+            artistsView.Size = new Size(150, 150);
+            artistsView.TabIndex = 1;
             // 
-            // lblArtist
+            // artistsViewForm
             // 
-            lblArtist.AutoSize = true;
-            lblArtist.Location = new Point(568, 169);
-            lblArtist.Name = "lblArtist";
-            lblArtist.Size = new Size(61, 15);
-            lblArtist.TabIndex = 9;
-            lblArtist.Text = "Artist Title";
+            artistsViewForm.Location = new Point(3, 3);
+            artistsViewForm.Name = "artistsViewForm";
+            artistsViewForm.Size = new Size(150, 150);
+            artistsViewForm.TabIndex = 0;
             // 
-            // lstArtists
+            // btnBack
             // 
-            lstArtists.FormattingEnabled = true;
-            lstArtists.ItemHeight = 15;
-            lstArtists.Location = new Point(289, 12);
-            lstArtists.Name = "lstArtists";
-            lstArtists.Size = new Size(120, 94);
-            lstArtists.TabIndex = 10;
-            // 
-            // lstAlbums
-            // 
-            lstAlbums.FormattingEnabled = true;
-            lstAlbums.ItemHeight = 15;
-            lstAlbums.Location = new Point(289, 124);
-            lstAlbums.Name = "lstAlbums";
-            lstAlbums.Size = new Size(120, 94);
-            lstAlbums.TabIndex = 11;
-            // 
-            // trkVolume
-            // 
-            trkVolume.Location = new Point(545, 318);
-            trkVolume.Maximum = 100;
-            trkVolume.Name = "trkVolume";
-            trkVolume.Size = new Size(104, 45);
-            trkVolume.TabIndex = 12;
-            trkVolume.TickStyle = TickStyle.None;
-            trkVolume.Value = 100;
-            // 
-            // chkLoopTrack
-            // 
-            chkLoopTrack.AutoSize = true;
-            chkLoopTrack.Location = new Point(487, 370);
-            chkLoopTrack.Name = "chkLoopTrack";
-            chkLoopTrack.Size = new Size(84, 19);
-            chkLoopTrack.TabIndex = 13;
-            chkLoopTrack.Text = "Loop Track";
-            chkLoopTrack.UseVisualStyleBackColor = true;
-            // 
-            // chkLoopAlbum
-            // 
-            chkLoopAlbum.AutoSize = true;
-            chkLoopAlbum.Location = new Point(591, 369);
-            chkLoopAlbum.Name = "chkLoopAlbum";
-            chkLoopAlbum.Size = new Size(92, 19);
-            chkLoopAlbum.TabIndex = 14;
-            chkLoopAlbum.Text = "Loop Album";
-            chkLoopAlbum.UseVisualStyleBackColor = true;
-            // 
-            // lblCurrentTime
-            // 
-            lblCurrentTime.AutoSize = true;
-            lblCurrentTime.Location = new Point(26, 381);
-            lblCurrentTime.Name = "lblCurrentTime";
-            lblCurrentTime.Size = new Size(34, 15);
-            lblCurrentTime.TabIndex = 15;
-            lblCurrentTime.Text = "00:00";
-            // 
-            // lblTotalTime
-            // 
-            lblTotalTime.AutoSize = true;
-            lblTotalTime.Location = new Point(187, 381);
-            lblTotalTime.Name = "lblTotalTime";
-            lblTotalTime.Size = new Size(34, 15);
-            lblTotalTime.TabIndex = 16;
-            lblTotalTime.Text = "00:00";
-            // 
-            // trackBarProgress
-            // 
-            trackBarProgress.Location = new Point(67, 381);
-            trackBarProgress.Maximum = 100;
-            trackBarProgress.Name = "trackBarProgress";
-            trackBarProgress.Size = new Size(104, 45);
-            trackBarProgress.TabIndex = 17;
-            trackBarProgress.TickStyle = TickStyle.None;
-            // 
-            // timerProgress
-            // 
-            timerProgress.Interval = 500;
-            // 
-            // lblVolumeLevel
-            // 
-            lblVolumeLevel.AutoSize = true;
-            lblVolumeLevel.Location = new Point(655, 318);
-            lblVolumeLevel.Name = "lblVolumeLevel";
-            lblVolumeLevel.Size = new Size(25, 15);
-            lblVolumeLevel.TabIndex = 18;
-            lblVolumeLevel.Text = "100";
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 23;
+            btnBack.Text = "Go Back";
+            btnBack.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(lblVolumeLevel);
-            Controls.Add(trackBarProgress);
-            Controls.Add(lblTotalTime);
-            Controls.Add(lblCurrentTime);
-            Controls.Add(chkLoopAlbum);
-            Controls.Add(chkLoopTrack);
-            Controls.Add(trkVolume);
-            Controls.Add(lstAlbums);
-            Controls.Add(lstArtists);
-            Controls.Add(lblArtist);
-            Controls.Add(lblAlbum);
-            Controls.Add(picArtist);
-            Controls.Add(picAlbumCover);
-            Controls.Add(btnStop);
-            Controls.Add(btnPause);
-            Controls.Add(lstSongs);
-            Controls.Add(lblStatus);
-            Controls.Add(btnPlay);
+            ClientSize = new Size(987, 615);
+            Controls.Add(btnBack);
+            Controls.Add(ViewPanel);
+            Controls.Add(btnPlaylists);
+            Controls.Add(btnAlbums);
+            Controls.Add(btnArtists);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)picAlbumCover).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picArtist).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trkVolume).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBarProgress).EndInit();
+            ViewPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Button btnPlay;
-        private Label lblStatus;
-        private ListBox lstSongs;
-        private Button btnPause;
-        private Button btnStop;
-        private PictureBox picAlbumCover;
-        private PictureBox picArtist;
-        private Label lblAlbum;
-        private Label lblArtist;
-        private ListBox lstArtists;
-        private ListBox lstAlbums;
-        private TrackBar trkVolume;
-        private CheckBox chkLoopTrack;
-        private CheckBox chkLoopAlbum;
-        private Label lblCurrentTime;
-        private Label lblTotalTime;
-        private TrackBar trackBarProgress;
-        private System.Windows.Forms.Timer timerProgress;
-        private Label lblVolumeLevel;
+        private Button btnArtists;
+        private Button btnAlbums;
+        private Button btnPlaylists;
+        private Panel ViewPanel;
+        private Button btnBack;
+        private customModules.Views.artists.artistsView.Artists artistsViewForm;
+        private customModules.Views.artists.artistsView.Artists artistsView;
+        private customModules.Views.artists.artistAlbumsView.ArtistAlbums artistAlbumsView;
+        private customModules.Views.artists.artistAlbumSongsView.ArtistAlbumSongs artistAlbumSongsView;
+        private customModules.Views.albums.albumsView.Albums albumsView;
     }
 }

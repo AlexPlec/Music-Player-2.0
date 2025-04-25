@@ -1,0 +1,80 @@
+[
+  {
+    "Id": "22c2c7ef-2c12-4dd5-81f2-719be830339f",
+    "Name": "Nagart",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Nagart\\artist.jpg",
+    "Genre": "Horror Punk"
+  },
+  {
+    "Id": "f3a3a965-9863-4c07-b980-27920a0ee83e",
+    "Name": "Norma Tale",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Norma Tale\\artist.jpg",
+    "Genre": ""
+  },
+  {
+    "Id": "9ecf1bed-eacf-44a0-8ff7-7f7653f63a4f",
+    "Name": "Rotten Toten",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Rotten Toten\\artist.jpg",
+    "Genre": "Punk Rock"
+  },
+  {
+    "Id": "6b071a23-c30f-41da-ba6e-a3fb46b8bf8d",
+    "Name": "Ангел-Хранитель",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Ангел-Хранитель\\artist.jpg",
+    "Genre": "Heavy Metal"
+  },
+  {
+    "Id": "5327de4a-6282-42b6-b978-aab4cb02d416",
+    "Name": "Ария",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Ария\\artist.jpg",
+    "Genre": "Heavy Metal"
+  },
+  {
+    "Id": "8cdd4fe6-e1f0-4006-aa09-67b4ce258fb9",
+    "Name": "Борода Бабая",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Борода Бабая\\artist.jpg",
+    "Genre": "Folk"
+  },
+  {
+    "Id": "67ae2271-8e81-4287-8cf0-488bdaf11726",
+    "Name": "Виконт",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Виконт\\artist.jpg",
+    "Genre": "Heavy Metal"
+  },
+  {
+    "Id": "6636e6c1-f4dc-4b69-a273-ef765d3a1a79",
+    "Name": "Включай микрофон!",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Включай микрофон!\\artist.jpg",
+    "Genre": "Ska Punk"
+  },
+  {
+    "Id": "2bd872b7-cbea-40f2-a903-e74c9dd4aded",
+    "Name": "КняZz",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\КняZz\\artist.jpg",
+    "Genre": ""
+  },
+  {
+    "Id": "245a58a7-7576-4711-bb01-b4067f1d361d",
+    "Name": "Коrsика",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Коrsика\\artist.jpg",
+    "Genre": "Rock"
+  },
+  {
+    "Id": "a28a4da0-93de-452c-bc61-2511e1413612",
+    "Name": "Король и Шут",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Король и Шут\\artist.jpg",
+    "Genre": "Rock | Punk | Punk Rock | Folk Rock | Horror Punk | Hard Rock | Alternative Rock"
+  },
+  {
+    "Id": "0fc7b0e6-1d2e-4576-9f67-4cff28089b85",
+    "Name": "Рок-опера Орфей",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Рок-опера Орфей\\artist.jpg",
+    "Genre": "Rock"
+  },
+  {
+    "Id": "f8c997b8-ec71-4248-bc3e-930fbce5638d",
+    "Name": "Харизма",
+    "CoverImagePath": "C:\\Users\\accht\\Documents\\GitHub\\Music-Player-2.0\\musicFiles\\Харизма\\artist.jpg",
+    "Genre": ""
+  }
+]
