@@ -24,6 +24,7 @@ namespace MusicPlayer.customModules.Views.artists.artistsView
             {
                 artistCover.Image.Dispose();
                 artistCover.Image = null;
+
             }
 
             using var img = Image.FromFile(artist.CoverImagePath);

@@ -17,7 +17,7 @@ namespace MusicPlayer.customModules.Views.artists.artistAlbumSongsView
             foreach (var song in songList)
             {
                 var songElement = new ArtistAlbumSongElement();
-                songElement.SetSong(albumItem, artistItem, song);
+                songElement.SetSong(albumItem, artistItem, song, songList);
                 songsLayout.Controls.Add(songElement);
             }
 

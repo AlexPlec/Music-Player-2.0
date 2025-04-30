@@ -38,6 +38,7 @@
             artistsView = new customModules.Views.artists.artistsView.Artists();
             artistsViewForm = new customModules.Views.artists.artistsView.Artists();
             btnBack = new Button();
+            audioPlayer = new customModules.AudioPlayer.AudioPlayer();
             ViewPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             ViewPanel.Controls.Add(artistsViewForm);
             ViewPanel.Location = new Point(170, 100);
             ViewPanel.Name = "ViewPanel";
-            ViewPanel.Size = new Size(491, 503);
+            ViewPanel.Size = new Size(491, 344);
             ViewPanel.TabIndex = 0;
             // 
             // albumsView
@@ -126,11 +127,19 @@
             btnBack.Text = "Go Back";
             btnBack.UseVisualStyleBackColor = true;
             // 
+            // audioPlayer
+            // 
+            audioPlayer.Location = new Point(144, 450);
+            audioPlayer.Name = "audioPlayer";
+            audioPlayer.Size = new Size(565, 70);
+            audioPlayer.TabIndex = 5;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(987, 615);
+            Controls.Add(audioPlayer);
             Controls.Add(btnBack);
             Controls.Add(ViewPanel);
             Controls.Add(btnPlaylists);
@@ -154,5 +163,6 @@
         private customModules.Views.artists.artistAlbumsView.ArtistAlbums artistAlbumsView;
         private customModules.Views.artists.artistAlbumSongsView.ArtistAlbumSongs artistAlbumSongsView;
         private customModules.Views.albums.albumsView.Albums albumsView;
+        private customModules.AudioPlayer.AudioPlayer audioPlayer;
     }
 }

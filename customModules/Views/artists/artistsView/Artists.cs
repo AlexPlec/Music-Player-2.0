@@ -4,12 +4,12 @@ namespace MusicPlayer.customModules.Views.artists.artistsView
 {
     public partial class Artists : UserControl
     {
+        public event Action<MusicMetadata.ArtistCacheItem> ArtistSelected;
+
         public Artists()
         {
             InitializeComponent();
         }
-        public event Action<MusicMetadata.ArtistCacheItem> ArtistSelected;
-
         public void SetArtists(List<MusicMetadata.ArtistCacheItem> artistList)
         {
             ArtistViewLayout.Controls.Clear();

@@ -1,4 +1,5 @@
 ﻿using MusicPlayer.metadata;
+using MusicPlayer.utility;
 
 namespace MusicPlayer
 {
@@ -6,6 +7,10 @@ namespace MusicPlayer
     {
         private MusicMetadata musicMetadata;
         private Stack<Control> navigationHistory = new Stack<Control>();
+        private bool artistsInitialized = false;
+        private bool albumsInitialized = false;
+        private GlobalKeyHandler globalKeyHandler;
+
         public Form1()
         {
             InitializeComponent();
@@ -14,15 +19,14 @@ namespace MusicPlayer
         private void Form1_Load(object sender, EventArgs e)
         {
             InitializeMetadata();
+            InitializeButtons();
+            globalKeyHandler = new GlobalKeyHandler(this, audioPlayer.ButtonsElementControl);
+        }
+        private void InitializeButtons()
+        {
             btnBack.Click += BtnBack_Click;
-            artistsView.SetArtists(musicMetadata.GetArtists());
-            artistsView.ArtistSelected += OnArtistSelected;
-            artistAlbumsView.AlbumSelected += OnAlbumSelected;
-            albumsView.SetAlbums(musicMetadata.GetAlbums(), musicMetadata.GetArtists());
             btnArtists.Click += (s, e) => ShowView(artistsView);
             btnAlbums.Click += (s, e) => ShowView(albumsView);
-            albumsView.AlbumSelected += OnAlbumSelected;
-
         }
         private void OnAlbumSelected(MusicMetadata.AlbumCacheItem album)
         {
@@ -45,7 +49,7 @@ namespace MusicPlayer
             artistAlbumsView.SetAlbums(artistAlbums, artist);
             artistAlbumsView.Visible = true;
         }
-        //    System.Diagnostics.Debug.WriteLine(lstSongs.SelectedItem);
+        //    System.Diagnostics.Debug.WriteLine("test");
         private void InitializeMetadata()
         {
 
@@ -74,23 +78,35 @@ namespace MusicPlayer
                 lastView.Visible = true;
             }
         }
-
         private void ShowView(Control viewToShow)
         {
-            // Hide all views
+
             artistsView.Visible = false;
             artistAlbumsView.Visible = false;
             artistAlbumSongsView.Visible = false;
             albumsView.Visible = false;
 
-            // Optionally keep track of navigation history
             if (!navigationHistory.Contains(viewToShow))
             {
                 navigationHistory.Push(viewToShow);
             }
 
-            // Show the selected view
             viewToShow.Visible = true;
+
+            if (viewToShow == artistsView && !artistsInitialized)
+            {
+                artistsInitialized = true;
+                artistsView.SetArtists(musicMetadata.GetArtists());
+                artistsView.ArtistSelected += OnArtistSelected;
+
+                artistAlbumsView.AlbumSelected += OnAlbumSelected;
+            }
+            if (viewToShow == albumsView && !albumsInitialized)
+            {
+                albumsInitialized = true;
+                albumsView.SetAlbums(musicMetadata.GetAlbums(), musicMetadata.GetArtists());
+                albumsView.AlbumSelected += OnAlbumSelected;
+            }
         }
     }
 }
