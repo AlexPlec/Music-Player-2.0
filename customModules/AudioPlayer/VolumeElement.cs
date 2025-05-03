@@ -5,7 +5,11 @@ namespace MusicPlayer.customModules.AudioPlayer
     public partial class VolumeElement : UserControl
     {
         private WaveOutEvent? outputDevice;
-        public float CurrentVolume => volumeLevel.Value / 100f;
+        public float CurrentVolume
+        {
+            get => volumeLevel.Value / 100f;
+            set => volumeLevel.Value = (int)(value * 100);
+        }
         public event Action<float>? VolumeChanged;
         public VolumeElement()
         {

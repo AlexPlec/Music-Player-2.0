@@ -31,7 +31,7 @@
             songInfoElement = new SongInfoElement();
             volumeElement = new VolumeElement();
             buttonsElement = new ButtonsElement();
-            timeBarElement1 = new TimeBarElement();
+            timeBarElement = new TimeBarElement();
             SuspendLayout();
             // 
             // songInfoElement
@@ -55,18 +55,18 @@
             buttonsElement.Size = new Size(405, 30);
             buttonsElement.TabIndex = 3;
             // 
-            // timeBarElement1
+            // timeBarElement
             // 
-            timeBarElement1.Location = new Point(159, 40);
-            timeBarElement1.Name = "timeBarElement1";
-            timeBarElement1.Size = new Size(190, 30);
-            timeBarElement1.TabIndex = 4;
+            timeBarElement.Location = new Point(159, 40);
+            timeBarElement.Name = "timeBarElement";
+            timeBarElement.Size = new Size(190, 30);
+            timeBarElement.TabIndex = 4;
             // 
             // AudioPlayer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(timeBarElement1);
+            Controls.Add(timeBarElement);
             Controls.Add(buttonsElement);
             Controls.Add(volumeElement);
             Controls.Add(songInfoElement);
@@ -81,6 +81,6 @@
         private TimeBarElement timeBarElements;
         private VolumeElement volumeElement;
         private ButtonsElement buttonsElement;
-        private TimeBarElement timeBarElement1;
+        private TimeBarElement timeBarElement;
     }
 }

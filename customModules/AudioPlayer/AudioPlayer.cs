@@ -2,6 +2,7 @@
 using NAudio.Wave;
 using static MusicPlayer.customModules.AudioPlayer.ButtonsElement;
 using static MusicPlayer.metadata.MusicMetadata;
+using static MusicPlayer.utility.PlayerHistory;
 
 namespace MusicPlayer.customModules.AudioPlayer
 {
@@ -16,6 +17,8 @@ namespace MusicPlayer.customModules.AudioPlayer
         public ArtistCacheItem currentArtist;
         public AlbumCacheItem currentAlbum;
         public SongCacheItem currentSong;
+        public int currentSongIndex;
+        public VolumeElement VolumeElement;
 
         public bool isPlaying = true;
         public ButtonsElement ButtonsElementControl => buttonsElement;
@@ -23,6 +26,8 @@ namespace MusicPlayer.customModules.AudioPlayer
         public AudioPlayer()
         {
             InitializeComponent();
+
+            VolumeElement = volumeElement;
 
             buttonsElement.SetAudioPlayer(this);
 
@@ -50,13 +55,13 @@ namespace MusicPlayer.customModules.AudioPlayer
             volumeElement.SetOutputDevice(outputDevice);
             outputDevice.Volume = volumeElement.CurrentVolume;
             outputDevice.Init(audioFileReader);
-            timeBarElement1.SetPlaybackDevices(audioFileReader, outputDevice);
+            timeBarElement.SetPlaybackDevices(audioFileReader, outputDevice);
             outputDevice.Play();
             outputDevice.PlaybackStopped += OnPlaybackStopped;
 
             // Update UI
             songInfoElement.SetSongInfo(artist, album, song);
-            timeBarElement1.SetDuration(audioFileReader.TotalTime);
+            timeBarElement.SetDuration(audioFileReader.TotalTime);
 
             StartPlaybackTimer();
             buttonsElement.BtnPlay.Text = "Play";
@@ -82,6 +87,7 @@ namespace MusicPlayer.customModules.AudioPlayer
                 return;
 
             int currentIndex = currentAlbumSongs.IndexOf(currentSong);
+            currentSongIndex = currentIndex;
             if (currentIndex >= 0 && currentIndex < currentAlbumSongs.Count - 1)
             {
                 var nextSong = currentAlbumSongs[currentIndex + 1];
@@ -99,9 +105,25 @@ namespace MusicPlayer.customModules.AudioPlayer
             playbackTimer.Tick += (_, __) =>
             {
                 if (audioFileReader != null)
-                    timeBarElement1.SetPosition(audioFileReader.CurrentTime);
+                    timeBarElement.SetPosition(audioFileReader.CurrentTime);
             };
             playbackTimer.Start();
+        }
+
+        public void SaveHistory()
+        {
+            var history = new HistoryItem
+            {
+                Playlist = currentAlbumSongs,
+                Album = currentAlbum,
+                Artist = currentArtist,
+                Song = currentSong,
+                CurrentIndex = currentSongIndex,
+                TrackPositionSeconds = timeBarElement.currentTime,
+                Volume = volumeElement.CurrentVolume,
+                RepeatMode = buttonsElement.repeatMode.ToString(),
+            };
+            Save(history);
         }
     }
 }

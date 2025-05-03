@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="audioPlayer\" />
-    <Folder Include="metadata\jsons\" />
   </ItemGroup>
 
 </Project>

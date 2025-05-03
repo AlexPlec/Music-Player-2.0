@@ -37,10 +37,9 @@ public partial class ButtonsElement : UserControl
     }
     private void OnPlayClicked(object? sender, EventArgs e)
     {
-
         if (audioPlayer.isPlaying)
         {
-            audioPlayer.outputDevice?.Pause();
+            audioPlayer.outputDevice?.Stop();
             btnPlay.Text = "Stop";
         }
         else
@@ -66,6 +65,21 @@ public partial class ButtonsElement : UserControl
             case RepeatMode.RepeatAlbum:
                 repeatMode = RepeatMode.RepeatOff;
                 btnRepeat.Text = "Repeat Off";
+                break;
+        }
+    }
+    public void UpdateRepeatButtonText()
+    {
+        switch (repeatMode)
+        {
+            case RepeatMode.RepeatOff:
+                btnRepeat.Text = "Repeat Off";
+                break;
+            case RepeatMode.RepeatSong:
+                btnRepeat.Text = "Repeat S";
+                break;
+            case RepeatMode.RepeatAlbum:
+                btnRepeat.Text = "Repeat A";
                 break;
         }
     }

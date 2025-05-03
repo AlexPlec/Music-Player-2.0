@@ -1,4 +1,5 @@
-﻿using MusicPlayer.metadata;
+﻿using MusicPlayer.customModules.AudioPlayer;
+using MusicPlayer.metadata;
 using MusicPlayer.utility;
 
 namespace MusicPlayer
@@ -10,17 +11,51 @@ namespace MusicPlayer
         private bool artistsInitialized = false;
         private bool albumsInitialized = false;
         private GlobalKeyHandler globalKeyHandler;
+        private TrayManager trayManager;
 
         public Form1()
         {
             InitializeComponent();
             musicMetadata = new MusicMetadata();
+            trayManager = new TrayManager(this, trayIcon);
+            FormClosing += Form1_FormClosing;
+            Application.ApplicationExit += OnApplicationExit;
+        }
+
+        private void OnApplicationExit(object sender, EventArgs e)
+        {
+            audioPlayer?.SaveHistory();
+        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
             InitializeMetadata();
             InitializeButtons();
             globalKeyHandler = new GlobalKeyHandler(this, audioPlayer.ButtonsElementControl);
+
+            var history = PlayerHistory.Load();
+
+            if (history != null && history.Song != null)
+            {
+                audioPlayer.LoadSong(history.Artist, history.Album, history.Song, history.Playlist);
+                audioPlayer.outputDevice.Stop();
+                audioPlayer.audioFileReader.CurrentTime = TimeSpan.FromSeconds(history.TrackPositionSeconds);
+                audioPlayer.VolumeElement.CurrentVolume = history.Volume;
+                audioPlayer.ButtonsElementControl.BtnPlay.Text = "Stop";
+                audioPlayer.isPlaying = false;
+                if (Enum.TryParse(history.RepeatMode, out ButtonsElement.RepeatMode mode))
+                {
+                    audioPlayer.ButtonsElementControl.repeatMode = mode;
+                    audioPlayer.ButtonsElementControl.UpdateRepeatButtonText();
+                }
+            }
         }
         private void InitializeButtons()
         {

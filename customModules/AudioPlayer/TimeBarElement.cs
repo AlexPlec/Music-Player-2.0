@@ -7,6 +7,7 @@ namespace MusicPlayer.customModules.AudioPlayer
         private AudioFileReader? audioFileReader;
         private WaveOutEvent? outputDevice;
         private bool wasPlayingBeforeSeek = false;
+        public double currentTime;
 
         public TimeBarElement()
         {
@@ -57,6 +58,7 @@ namespace MusicPlayer.customModules.AudioPlayer
         {
             trackBarTime.Value = (int)current.TotalSeconds;
             songCurrentTime.Text = current.ToString(@"mm\:ss");
+            currentTime = trackBarTime.Value;
         }
 
         public void SetPlaybackDevices(AudioFileReader reader, WaveOutEvent device)

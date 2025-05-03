@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             btnArtists = new Button();
             btnAlbums = new Button();
             btnPlaylists = new Button();
@@ -39,6 +41,7 @@
             artistsViewForm = new customModules.Views.artists.artistsView.Artists();
             btnBack = new Button();
             audioPlayer = new customModules.AudioPlayer.AudioPlayer();
+            trayIcon = new NotifyIcon(components);
             ViewPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -134,6 +137,12 @@
             audioPlayer.Size = new Size(565, 70);
             audioPlayer.TabIndex = 5;
             // 
+            // trayIcon
+            // 
+            trayIcon.Icon = (Icon)resources.GetObject("trayIcon.Icon");
+            trayIcon.Text = "Music Player";
+            trayIcon.Visible = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -164,5 +173,6 @@
         private customModules.Views.artists.artistAlbumSongsView.ArtistAlbumSongs artistAlbumSongsView;
         private customModules.Views.albums.albumsView.Albums albumsView;
         private customModules.AudioPlayer.AudioPlayer audioPlayer;
+        private NotifyIcon trayIcon;
     }
 }

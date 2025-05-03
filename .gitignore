@@ -402,3 +402,6 @@ FodyWeavers.xsd
 
 # But don't ignore the musicFiles directory itself
 !/musicFiles/
+
+/metadata/jsons/*
+!/metadata/jsons/.gitkeep
